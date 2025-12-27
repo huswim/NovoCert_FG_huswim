@@ -4,14 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches: [ "main", "build/docker/**" ]
-    # trigger only when files in Docker/ folder change
-    paths:
-      - 'Docker/**'
-  pull_request:
-    branches: [ "main", "build/docker/**" ]
-    paths:
-      - 'Docker/**'
-
+    tags: [ "v*" ]
 env:
   REGISTRY: ghcr.io
   # Base image name (service name will be appended as a suffix)
