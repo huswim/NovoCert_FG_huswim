@@ -38,15 +38,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 1. Check for changes in the specific Docker service folder
-      - name: Check for changes
-        uses: dorny/paths-filter@v2
-        id: filter
-        with:
-          filters: |
-            changed:
-              - 'Docker/${{ matrix.service }}/**'
-
       # 2. Install cosign (only if there are changes and not a PR)
       - name: Install cosign
         if: steps.filter.outputs.changed == 'true' && github.event_name != 'pull_request'
